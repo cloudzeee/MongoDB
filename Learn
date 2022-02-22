@@ -1,0 +1,38 @@
+MongoDb is a documented oriented NoSql database for storing high volume data
+They are horizontally distributed and you can keep adding data. MongodB also stored data in doument(in json format)
+It is a flexible schema(basically accepts any form or type of data)
+It can handle unstructured data
+basic difference betw the sql
+MongoDB-No schema  SQL- Rigid schema
+No joins        -     there are joins
+denomralized data - Normalized data and there are so many relationships; hence the reason for join
+fetching operation is fast - fecthing is slow
+In Mongo DB - Maximu document size - 16mb
+maximum nesting9having a database in another database) - 100levels
+DB name - limited to 64
+
+You can create a cluster in the cloud
+Go to mongodb.com
+signup and verify account
+create free cluster and choose any cloud provider
+
+To connect to newly created cluster
+-load dataset
+create database user by going to database access
+whitelist/app Ip address by going to Network acces and add current IP
+Then you can connect to your mongodb cluster
+there are 3 ways to connect to a cluster -Mongo shell, using a mongodb compass, or through an application like nodejs
+
+Using mongo DB shell
+select the connect to mongodb using the shell option
+select the OS and download mongobd zip file
+unzip the file; go to the bin folder and copy the path
+Open up this PC go to properties and then advanced systme prperties
+under advanced click onEnvironment variables and then path
+paste copied path into variable and save
+copy connection string; Open up command prompt and enter
+
+show dbs - shows all databases in the cluster
+use 'database name' - similar to cd; helps you go into a directory
+show collections - give all database collections
+db.listingsAndReviews.findOne() - allows use read one of the documents in the collection
