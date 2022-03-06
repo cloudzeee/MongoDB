@@ -43,4 +43,7 @@ should you have issues connecting to your cluster; check the IP
 
 
 using insertOne() operation inserts one array of info e.g db.movies.insertOne({ id: "Aki and PawPaw", name: "A and P", year: 2009, genre["romantic","drama"], ratings:5, description: "new movie"})
+insertMany() operation helps insert more than one documents
 db.movies.find().pretty provides an arranged information about collections in movies database
+
+MongoDb assigns a unique id to each added document. you cn also provide your ID else mongoDb provides a unique ID for your documents
