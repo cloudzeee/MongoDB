@@ -47,3 +47,31 @@ insertMany() operation helps insert more than one documents
 db.movies.find().pretty provides an arranged information about collections in movies database
 
 MongoDb assigns a unique id to each added document. you cn also provide your ID else mongoDb provides a unique ID for your documents
+
+Atlas atlas-c5ewlj-shard-0 [primary] moviesDB> db.movies.updateOne({"name":"titanic"}, {$set: {"ratings":10}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+
+ db.movies.insertOne({"name": "John Doe","year": 2003,"ratings":6, "genre":"Blues","song-type": "Afrobeats"})
+ 
+ db.movies.updateMany({}, {$set: {"country":"Nigeria"}})
+ 
+ db.movies.find().pretty()
+ 
+ > db.movies.updateMany({"name": "A and P"}, {$unset: {ratings:""}})
+ 
+  db.movies.updateMany({}, {$rename:{"ratings":"customer_rating"}})
+  
+  To have a selected fields in your output  when using the .find(); You can make use of projections
+  db.movies.find({}, {name:1, year:1}
+  
+   db.movies.deleteOne({name:"Boss"})
+   
+    db.movies.deleteMany{name:"Boss"})
+    
+    db.dropdatabase()
+db.movies.drop()
