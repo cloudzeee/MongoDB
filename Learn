@@ -36,3 +36,11 @@ show dbs - shows all databases in the cluster
 use 'database name' - similar to cd; helps you go into a directory
 show collections - give all database collections
 db.listingsAndReviews.findOne() - allows use read one of the documents in the collection
+
+
+Also note once your cluster is created you wont be able to change the name.
+should you have issues connecting to your cluster; check the IP
+
+
+using insertOne() operation inserts one array of info e.g db.movies.insertOne({ id: "Aki and PawPaw", name: "A and P", year: 2009, genre["romantic","drama"], ratings:5, description: "new movie"})
+db.movies.find().pretty provides an arranged information about collections in movies database
