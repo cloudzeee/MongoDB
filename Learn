@@ -1,29 +1,31 @@
-MongoDb is a documented oriented NoSql database for storing high volume data
-They are horizontally distributed and you can keep adding data. MongodB also stored data in doument(in json format)
-It is a flexible schema(basically accepts any form or type of data)
-It can handle unstructured data
-basic difference betw the sql
-MongoDB-No schema  SQL- Rigid schema
-No joins        -     there are joins
-denomralized data - Normalized data and there are so many relationships; hence the reason for join
-fetching operation is fast - fecthing is slow
-In Mongo DB - Maximu document size - 16mb
-maximum nesting9having a database in another database) - 100levels
-DB name - limited to 64
+MONGO DB LESSONS
+=====================
 
-You can create a cluster in the cloud
+- MongoDb is a documented oriented NoSql database for storing high volume data. It is a N0sql database unlike mysql and postgress.
+- They are horizontally distributed and you can keep adding data. MongodB also stored data in doument(in json format)
+- It is a flexible schema(basically accepts any form or type of data), can be said to be schemaless and can handle unstructured data
+- Basic differences betweeen Mongodb and sql include the follwing
+1. MongoDB has no schema, SQL has a Rigid schema
+2. There are no joins in MongoDb, in sql there are joins
+3. In MongoDb there are denomaralized data, In sql there are Normalized data and there are so many relationships; hence the reason for join
+4. In Mongodb fetching operation is fast, In sql fecthing is slow
+
+- In Mongo DB the Maximum document size - 16mb and maximum nesting(having a database in another database) - 100levels
+
+- To create a database cluster in the cloud
 Go to mongodb.com
 signup and verify account
-create free cluster and choose any cloud provider
+create free cluster and choose any cloud provider. To get the free clusters; use the shared server and it is only available to one cluster
+Click on database access and click on create
 
-To connect to newly created cluster
--load dataset
-create database user by going to database access
-whitelist/app Ip address by going to Network acces and add current IP
-Then you can connect to your mongodb cluster
+- To connect to newly created cluster
+First create database user by going to database access
+whitelist/app Ip address by going to Network acces and add current IP/ whitelist all IPS
+Then you can connect to your mongodb cluster by clicking on connect
 there are 3 ways to connect to a cluster -Mongo shell, using a mongodb compass, or through an application like nodejs
+Mongodb compass installs an application which can be used to query the database clusters
 
-Using mongo DB shell
+- Using mongo DB shell
 select the connect to mongodb using the shell option
 select the OS and download mongobd zip file
 unzip the file; go to the bin folder and copy the path
@@ -32,46 +34,57 @@ under advanced click onEnvironment variables and then path
 paste copied path into variable and save
 copy connection string; Open up command prompt and enter
 
-show dbs - shows all databases in the cluster
-use 'database name' - similar to cd; helps you go into a directory
-show collections - give all database collections
-db.listingsAndReviews.findOne() - allows use read one of the documents in the collection
+-Below are MongoDB commands
+show dbs // shows all databases in the cluster
 
+use 'database name' // similar to cd; helps you go into a directory. where database name is the name of the database
 
-Also note once your cluster is created you wont be able to change the name.
-should you have issues connecting to your cluster; check the IP
+show collections // shows all database collections
 
+db.listingsAndReviews.findOne() // allows use read one of the documents in the collection. Helps find a document where listingsAndReviews is the name of the collection
+
+db.movies.find().pretty() // provides an arranged information about collections in movies database
+
+db.movies.updateOne({"name":"titanic"}, {$set: {"ratings":10}} //this updates one of the records in this case, it searches for a document with name called titanic and updates the ratings to the 10
 
 using insertOne() operation inserts one array of info e.g db.movies.insertOne({ id: "Aki and PawPaw", name: "A and P", year: 2009, genre["romantic","drama"], ratings:5, description: "new movie"})
 insertMany() operation helps insert more than one documents
-db.movies.find().pretty provides an arranged information about collections in movies database
 
-MongoDb assigns a unique id to each added document. you cn also provide your ID else mongoDb provides a unique ID for your documents
-
-Atlas atlas-c5ewlj-shard-0 [primary] moviesDB> db.movies.updateOne({"name":"titanic"}, {$set: {"ratings":10}})
-{
-  acknowledged: true,
-  insertedId: null,
-  matchedCount: 0,
-  modifiedCount: 0,
-  upsertedCount: 0
-
- db.movies.insertOne({"name": "John Doe","year": 2003,"ratings":6, "genre":"Blues","song-type": "Afrobeats"})
+db.movies.insertOne({"name": "John Doe","year": 2003,"ratings":6, "genre":"Blues","song-type": "Afrobeats"}) //inserts the information into the collection movies
  
- db.movies.updateMany({}, {$set: {"country":"Nigeria"}})
+db.movies.updateMany({}, {$set: {"country":"Nigeria"}}) //updates all document with country to Nigeria(this is because of the {} applies to all documents)
  
- db.movies.find().pretty()
+db.movies.updateMany({"name": "A and P"}, {$unset: {ratings:""}})  //this removes the ratings for all documents with the name A and P
  
- > db.movies.updateMany({"name": "A and P"}, {$unset: {ratings:""}})
- 
-  db.movies.updateMany({}, {$rename:{"ratings":"customer_rating"}})
+db.movies.updateMany({}, {$rename:{"ratings":"customer_rating"}})  //Renames all document with ratings to customer_ratings
   
-  To have a selected fields in your output  when using the .find(); You can make use of projections
+To have a selected fields in your output  when using the .find(); You can make use of projections
   db.movies.find({}, {name:1, year:1}
   
    db.movies.deleteOne({name:"Boss"})
    
     db.movies.deleteMany{name:"Boss"})
     
-    db.dropdatabase()
-db.movies.drop()
+db.dropdatabase() //deletes the database
+
+db.movies.drop()  //deletes the collection
+
+db.movies.find({title:{$in:[ "Wild and Woolly","The Immigrant"]}})   // finds document with title  specified in the array
+
+db.movies.find({title:{$notin:[ "Wild and Woolly","The Immigrant"]}})   //finds documents whcih titles do not contains the titles specified in the array
+ 
+db.movies.find({ratings: {$gte:4}})  //provides documents with ratings greater than 4
+ 
+db.movies.find({$or: [{ratings: {$gte:4},{}year:2001]}.pretty())    //provides documents with ratings either greater than 4 or made in year 2001
+  
+db.movies.find({fullplot: {$regex:/Easterner/}}).pretty()    //searches documenst fullplot for easterner and provides them
+
+- Also note once your cluster is created you wont be able to change the name.
+should you have issues connecting to your cluster; check the IP
+
+- MongoDb assigns a unique id to each added document. you cn also provide your ID else mongoDb provides a unique ID for your documents
+
+
+
+
+ 
