@@ -34,7 +34,9 @@ under advanced click onEnvironment variables and then path
 paste copied path into variable and save
 copy connection string; Open up command prompt and enter
 
--Below are MongoDB commands
+-Below are MongoDB commands or Queries that can be used
+==========================================================
+
 show dbs // shows all databases in the cluster
 
 use 'database name' // similar to cd; helps you go into a directory. where database name is the name of the database
